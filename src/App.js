@@ -38,7 +38,10 @@ function App() {
           </NavItem>
         </NavBar>
       </Header>
-      <Main> This is Mainn </Main> <Footer> this is footer </Footer>
+
+      <Main> This is Mainn </Main>
+
+      <Footer> this is footer </Footer>
     </ThemeProvider>
   );
 }
