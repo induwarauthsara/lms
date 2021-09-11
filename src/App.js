@@ -23,18 +23,18 @@ function App() {
       <Header>
         <NavBar>
           <NavItem>
-            <NavLink href="#">
+            <NavLink href="/">
               <ImBook />
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="#"> Home </NavLink>
+            <NavLink href="/"> Home </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="#"> About Us </NavLink>
+            <NavLink href="about"> About Us </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="#"> Contact </NavLink>
+            <NavLink href="/contact"> Contact </NavLink>
           </NavItem>
         </NavBar>
       </Header>

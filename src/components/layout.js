@@ -9,7 +9,6 @@ export const Header = styled.header `
 
 export const Main = styled.main `
   height: 95vh;
-  background: yellow;
   overflow: hidden;
   padding: 20px;
 `;
