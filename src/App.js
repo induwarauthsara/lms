@@ -1,5 +1,6 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
+import { ImBook } from "react-icons/im";
 
 import { Header, Main, Footer } from "./components/layout";
 import { NavBar, NavItem, NavLink } from "./components/navbar";
@@ -22,17 +23,22 @@ function App() {
       <Header>
         <NavBar>
           <NavItem>
-            <NavLink href="#"> Home </NavLink>{" "}
-          </NavItem>{" "}
+            <NavLink href="#">
+              <ImBook />
+            </NavLink>
+          </NavItem>
           <NavItem>
-            <NavLink href="#"> About Us </NavLink>{" "}
-          </NavItem>{" "}
+            <NavLink href="#"> Home </NavLink>
+          </NavItem>
           <NavItem>
-            <NavLink href="#"> Contact </NavLink>{" "}
-          </NavItem>{" "}
-        </NavBar>{" "}
-      </Header>{" "}
-      <Main> This is Mainn </Main> <Footer> this is footer </Footer>{" "}
+            <NavLink href="#"> About Us </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="#"> Contact </NavLink>
+          </NavItem>
+        </NavBar>
+      </Header>
+      <Main> This is Mainn </Main> <Footer> this is footer </Footer>
     </ThemeProvider>
   );
 }

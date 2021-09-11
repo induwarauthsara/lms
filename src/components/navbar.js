@@ -10,7 +10,6 @@ export const NavBar = styled.ul `
 
 export const NavItem = styled.li `
   float: left;
-  height: 5vh;
 `;
 
 export const NavLink = styled.a `
@@ -20,7 +19,7 @@ export const NavLink = styled.a `
   padding: 14px 16px;
   text-decoration: none;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 
   :hover {
     color: ${(props) => props.theme.primary.TextColor};
