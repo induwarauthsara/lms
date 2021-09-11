@@ -1,21 +1,39 @@
-import React from 'react';
-import styled from 'styled-components/';
+import React from "react";
+import { ThemeProvider } from "styled-components";
 
-const Heading = styled.h1`
-color: red;
-font-size: 20px;
-`;
-
-const ww = styled.section`
-background: purple;
-padding:20px;
-`;
+import { Header, Main, Footer } from "./components/layout";
+import { NavBar, NavItem, NavLink } from "./components/navbar";
 
 function App() {
+  const theme = {
+    primary: {
+      main: "#29b6f6",
+      light: "#77e8ff",
+      dark: "#0086c3",
+      TextColor: "#000",
+    },
+    secondary: {
+      main: "#fff",
+    },
+  };
+
   return (
-      <ww>
-        <Heading>dsaduuaabbbba</Heading>
-      </ww>   
+    <ThemeProvider theme={theme}>
+      <Header>
+        <NavBar>
+          <NavItem>
+            <NavLink href="#"> Home </NavLink>{" "}
+          </NavItem>{" "}
+          <NavItem>
+            <NavLink href="#"> About Us </NavLink>{" "}
+          </NavItem>{" "}
+          <NavItem>
+            <NavLink href="#"> Contact </NavLink>{" "}
+          </NavItem>{" "}
+        </NavBar>{" "}
+      </Header>{" "}
+      <Main> This is Mainn </Main> <Footer> this is footer </Footer>{" "}
+    </ThemeProvider>
   );
 }
 
