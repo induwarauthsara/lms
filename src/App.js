@@ -1,9 +1,10 @@
-import React, { setState } from "react";
+import React from "react";
 import { ThemeProvider } from "styled-components";
 import { ImBook } from "react-icons/im";
 
 import { Header, Main, Footer } from "./components/layout";
 import { NavBar, NavItem, NavLink } from "./components/navbar";
+
 import Dashboard from "./containers/Dashboard";
 
 function App() {
@@ -19,8 +20,6 @@ function App() {
     },
   };
 
-  const [type, setType] = "error";
-
   return (
     <ThemeProvider theme={theme}>
       <Header>
@@ -34,7 +33,7 @@ function App() {
             <NavLink href="/"> Home </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="about"> About Us </NavLink>
+            <NavLink href="/about"> About Us </NavLink>
           </NavItem>
           <NavItem>
             <NavLink href="/contact"> Contact </NavLink>
@@ -46,7 +45,9 @@ function App() {
         <Dashboard />
       </Main>
 
-      <Footer> this is footer </Footer>
+      <Footer>
+        Copyright {new Date().getFullYear()} &copy; Induwara Uthsara
+      </Footer>
     </ThemeProvider>
   );
 }

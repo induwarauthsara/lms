@@ -1,7 +1,16 @@
+import React, { useState } from "react";
 import styled from "styled-components";
 
-export const Tabs = styled.div`
+export const TabsContainer = styled.div`
   height: 100%;
+`;
+
+const TabButtonContainer = styled.div`
+  display: flex;
+  > * {
+    flex: 1 1 0;
+    max-width: 10em;
+  }
 `;
 
 export const Tab = styled.button`
@@ -11,20 +20,20 @@ export const Tab = styled.button`
   outline: none;
   cursor: pointer;
   possion: relative;
-  margin: 0px 10px;
   padding: 8px 10px;
   background-color: ${(props) => (props.active ? "#29b6f6" : "white")};
   font-size: 1rem;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  margin: 0px 5px;
   :hover {
-    background-color: #0086c3;
+    background-color: ${(props) => props.theme.primary.light};
   }
 `;
 
-export const TabContent = styled.div`
+export const TabContents = styled.div`
   min-height: 80vh;
-  border: 5px solid #29b6f6;
+  border: 5px solid ${(props) => props.theme.primary.main};
   border-radius: 5px;
   padding: 5px;
 `;
@@ -32,3 +41,33 @@ export const TabContent = styled.div`
 export const Content = styled.div`
   display: ${(props) => (props.active ? "" : "none")};
 `;
+
+export default function Tabs(props) {
+  const { contents } = props;
+
+  const [active, setActive] = useState(0);
+
+  function handleTabClick(event) {
+    const Index = parseInt(event.target.id, 0);
+    if (Index !== active) {
+      setActive(Index);
+    }
+  }
+
+  return (
+    <TabsContainer>
+      <TabButtonContainer>
+        {contents.map((contents, index) => (
+          <Tab id={index} onClick={handleTabClick} active={active === index}>
+            {contents.title}
+          </Tab>
+        ))}
+      </TabButtonContainer>
+      <TabContents>
+        {contents.map((contents, index) => (
+          <Content active={active === index}>{contents.elements}</Content>
+        ))}
+      </TabContents>
+    </TabsContainer>
+  );
+}
