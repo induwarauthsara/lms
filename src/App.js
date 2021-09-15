@@ -1,9 +1,10 @@
-import React from "react";
+import React, { setState } from "react";
 import { ThemeProvider } from "styled-components";
 import { ImBook } from "react-icons/im";
 
 import { Header, Main, Footer } from "./components/layout";
 import { NavBar, NavItem, NavLink } from "./components/navbar";
+import Dashboard from "./containers/Dashboard";
 
 function App() {
   const theme = {
@@ -17,6 +18,8 @@ function App() {
       main: "#fff",
     },
   };
+
+  const [type, setType] = "error";
 
   return (
     <ThemeProvider theme={theme}>
@@ -39,7 +42,9 @@ function App() {
         </NavBar>
       </Header>
 
-      <Main> This is Mainn </Main>
+      <Main>
+        <Dashboard />
+      </Main>
 
       <Footer> this is footer </Footer>
     </ThemeProvider>
