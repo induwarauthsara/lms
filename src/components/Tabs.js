@@ -3,6 +3,8 @@ import styled from "styled-components";
 
 export const TabsContainer = styled.div`
   height: 100%;
+  width: 100%;
+  margin: 0px 10vh;
 `;
 
 const TabButtonContainer = styled.div`
@@ -25,7 +27,7 @@ export const Tab = styled.button`
   font-size: 1rem;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  margin: 0px 5px;
+  margin: 0px 5px 0px 0px;
   :hover {
     background-color: ${(props) => props.theme.primary.light};
   }
@@ -34,8 +36,10 @@ export const Tab = styled.button`
 export const TabContents = styled.div`
   min-height: 80vh;
   border: 5px solid ${(props) => props.theme.primary.main};
-  border-radius: 5px;
-  padding: 5px;
+  border-top: 10px solid ${(props) => props.theme.primary.main};
+  border-radius: 15px;
+  border-top-left-radius: 0px;
+  padding: 2rem;
 `;
 
 export const Content = styled.div`
