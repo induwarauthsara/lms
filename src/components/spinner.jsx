@@ -155,34 +155,34 @@ const Book_item = styled.li`
     border: 5px solid white;
   }
   :nth-child(1) {
-    background: #fd0100;
+    background: #a90f33;
   }
   :nth-child(2) {
-    background: #f76915;
+    background: #b88100;
     -webkit-animation-delay: 416.66667ms;
     animation-delay: 416.66667ms;
   }
 
   :nth-child(3) {
-    background: #eede04;
+    background: #05b384;
     -webkit-animation-delay: 833.33333ms;
     animation-delay: 833.33333ms;
   }
 
   :nth-child(4) {
-    background: #a0d636;
+    background: #1190bb;
     -webkit-animation-delay: 1250ms;
     animation-delay: 1250ms;
   }
 
   :nth-child(5) {
-    background: #2fa236;
+    background: #073b4c;
     -webkit-animation-delay: 1666.66667ms;
     animation-delay: 1666.66667ms;
   }
 
   :nth-child(6) {
-    background: #333ed4;
+    background: #32809a;
     -webkit-animation-delay: 2083.33333ms;
     animation-delay: 2083.33333ms;
   }
