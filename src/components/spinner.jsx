@@ -372,6 +372,7 @@ const Spinner = (props) => {
         <Book_item className="sixth" />
       </Books_list>
       <Shelf />
+      <br />
       <h1>{msg}</h1>
     </Bookshelf_wrapper>
   );

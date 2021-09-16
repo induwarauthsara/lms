@@ -11,10 +11,13 @@ const ErrorContainer = styled.div`
 
 const Error = styled.h1`
   text-align: center;
+  margin: 0.67em 0 0.67em 0;
 `;
 
 const ErrorDescription = styled.h3`
   text-align: center;
+  margin-top: 1em;
+  margin-bottom: 1em;
 `;
 
 const Red = styled.span`
@@ -24,6 +27,8 @@ const Hr = styled.hr`
   width: 90%;
   color: ${(props) => props.theme.primary.main};
   border: 1px solid ${(props) => props.theme.primary.main};
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 `;
 
 const Error404 = () => {
