@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 /*
 $thickness: 5 px;
@@ -356,7 +356,11 @@ const Shelf = styled.div`
 
 // Export
 
-const Spinner = () => {
+const Spinner = (props) => {
+  var msg = props.msg;
+  if (msg == undefined) {
+    msg = "Loading...";
+  }
   return (
     <Bookshelf_wrapper>
       <Books_list>
@@ -368,7 +372,7 @@ const Spinner = () => {
         <Book_item className="sixth" />
       </Books_list>
       <Shelf />
-      <h1>Loading...</h1>
+      <h1>{msg}</h1>
     </Bookshelf_wrapper>
   );
 };

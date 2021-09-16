@@ -1,11 +1,24 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { ThemeProvider } from "styled-components";
 import { ImBook } from "react-icons/im";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { Header, Main, Footer } from "./components/layout";
 import { NavBar, NavItem, NavLink } from "./components/navbar";
+import Spinner from "./components/spinner";
 
-import Dashboard from "./containers/Dashboard";
+import { CATALOG, DASHBOARD } from "./shared/routes";
+
+const Dashboard = React.lazy(() => import("./containers/Dashboard"));
+const Error404 = React.lazy(() => import("./containers/404"));
+
+let routes = (
+  <Switch>
+    <Route path={DASHBOARD} exact component={Dashboard} />
+    <Route path={CATALOG} exact component={Spinner} />
+    <Route component={Error404} />
+  </Switch>
+);
 
 function App() {
   const theme = {
@@ -33,16 +46,18 @@ function App() {
             <NavLink href="/"> Home </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="/about"> About Us </NavLink>
+            <NavLink href={DASHBOARD}> Dashboard </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="/contact"> Contact </NavLink>
+            <NavLink href={CATALOG}> Catalog </NavLink>
           </NavItem>
         </NavBar>
       </Header>
 
       <Main>
-        <Dashboard />
+        <Suspense fallback={<Spinner msg="Loading.." />}>
+          <Router>{routes}</Router>
+        </Suspense>
       </Main>
 
       <Footer>

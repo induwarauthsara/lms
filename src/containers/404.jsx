@@ -1,0 +1,47 @@
+import styled from "styled-components";
+
+import Spinner from "../components/spinner";
+
+const ErrorContainer = styled.div`
+  width: 70vh;
+  //justify-content: center;
+  margin: 20px;
+  border: 5px solid ${(props) => props.theme.primary.main};
+`;
+
+const Error = styled.h1`
+  text-align: center;
+`;
+
+const ErrorDescription = styled.h3`
+  text-align: center;
+`;
+
+const Red = styled.span`
+  color: Red;
+`;
+const Hr = styled.hr`
+  width: 90%;
+  color: ${(props) => props.theme.primary.main};
+  border: 1px solid ${(props) => props.theme.primary.main};
+`;
+
+const Error404 = () => {
+  return (
+    <center>
+      <Spinner msg="Searching..." />
+      <ErrorContainer>
+        <Error>
+          <Red>404</Red> Error
+        </Error>
+        <Hr />
+        <ErrorDescription>
+          You're in <Red> wrong Book shelf </Red>. So you searched Book isn't
+          there. <br /> You can find it in <Red> another location.. </Red>
+        </ErrorDescription>
+      </ErrorContainer>
+    </center>
+  );
+};
+
+export default Error404;
