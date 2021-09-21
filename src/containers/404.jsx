@@ -41,7 +41,7 @@ const Error404 = () => {
         </Error>
         <Hr />
         <ErrorDescription>
-          You're in <Red> wrong Book shelf </Red>. So you searched Book isn't
+          You're in <Red> wrong Book shelf </Red>. So you searched Content isn't
           there. <br /> You can find it in <Red> another location.. </Red>
         </ErrorDescription>
       </ErrorContainer>

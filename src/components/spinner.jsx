@@ -5,7 +5,7 @@ $thickness: 5 px;
 $duration: 2500;
 $delay: $duration / 6;
 */
-const Bookshelf_wrapper = styled.div`
+const Bookshelfwrapper = styled.div`
   position: absolute;
   top: 60%;
   left: 50%;
@@ -16,13 +16,13 @@ const Bookshelf_wrapper = styled.div`
   }
 `;
 
-const Books_list = styled.ul`
+const Bookslist = styled.ul`
   margin: 0 auto;
   width: 300px;
   padding: 0;
 `;
 
-const Book_item = styled.li`
+const Bookitem = styled.li`
   position: absolute;
   top: -120px;
   -webkit-box-sizing: border-box;
@@ -358,23 +358,23 @@ const Shelf = styled.div`
 
 const Spinner = (props) => {
   var msg = props.msg;
-  if (msg == undefined) {
+  if (msg === undefined) {
     msg = "Loading...";
   }
   return (
-    <Bookshelf_wrapper>
-      <Books_list>
-        <Book_item className="first" />
-        <Book_item className="second" />
-        <Book_item className="third" />
-        <Book_item className="fourth" />
-        <Book_item className="fifth" />
-        <Book_item className="sixth" />
-      </Books_list>
+    <Bookshelfwrapper>
+      <Bookslist>
+        <Bookitem className="first" />
+        <Bookitem className="second" />
+        <Bookitem className="third" />
+        <Bookitem className="fourth" />
+        <Bookitem className="fifth" />
+        <Bookitem className="sixth" />
+      </Bookslist>
       <Shelf />
       <br />
       <h1>{msg}</h1>
-    </Bookshelf_wrapper>
+    </Bookshelfwrapper>
   );
 };
 
