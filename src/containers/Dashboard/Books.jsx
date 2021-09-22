@@ -11,14 +11,23 @@ const Books = ({ catalog }) => {
       burrowedDate: "",
       burrowedMemberId: "",
       id: "3",
-      isAvailable: "true",
-      title: "Ethical Hacking Handbook",
+      isAvailable: false,
+      title: "Ethical Hacking Handbook - 2023",
     },
   ];
+
+  const handleTabRowClick = (id) => {
+    // console.log(id);
+    alert(id);
+  };
   return (
     <FluidContainer>
       {/* {catalog[0] && catalog[0].title ? catalog[0].title : "Still Rendering"} */}
-      <Table data={updatedCatalog} />
+      <Table
+        data={updatedCatalog}
+        handleRowClick={handleTabRowClick}
+        instructions="Click Row to View Book"
+      />
     </FluidContainer>
   );
 };
