@@ -9,7 +9,7 @@ import Spinner from "./components/spinner";
 
 import { CATALOG, DASHBOARD } from "./shared/routes";
 
-const Dashboard = React.lazy(() => import("./containers/Dashboard"));
+const Dashboard = React.lazy(() => import("./containers/Dashboard/index"));
 const Error404 = React.lazy(() => import("./containers/404"));
 
 let routes = (
