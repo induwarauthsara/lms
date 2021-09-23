@@ -1,7 +1,6 @@
 # Library Managmenet System with MERN Stack ( Express.js | Node.js | MongoDB | React )
-![Lines of code](https://img.shields.io/tokei/lines/github/induwarauthsara/lms?style=for-the-badge)
-![Profile views](https://gpvc.arturio.dev/induwarauthsara)
-[![GitHub followers](https://img.shields.io/github/followers/induwarauthsara?label=Followers)](https://github.com/induwarauthsara?tab=followers)
+![Lines of code](https://img.shields.io/tokei/lines/github/induwarauthsara/lms)
+![This Repo views](https://gpvc.arturio.dev/induwarauthsara)
 ![Github](https://img.shields.io/github/followers/induwarauthsara?label=Follow&style=social)
 
 
