@@ -1,4 +1,9 @@
-# Getting Started with Create React App
+# Library Managmenet System with MERN Stack ( Express.js | Node.js | MongoDB | React )
+![Lines of code](https://img.shields.io/tokei/lines/github/induwarauthsara/lms?style=for-the-badge)
+![Profile views](https://gpvc.arturio.dev/induwarauthsara)
+[![GitHub followers](https://img.shields.io/github/followers/induwarauthsara?label=Followers)](https://github.com/induwarauthsara?tab=followers)
+![Github](https://img.shields.io/github/followers/induwarauthsara?label=Follow&style=social)
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
