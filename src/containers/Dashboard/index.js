@@ -37,11 +37,7 @@ const Dashboard = () => {
       elements: <h1> Members Content </h1>,
     },
   ];
-  return isLoading ? (
-    <Spinner msg="Loading" />
-  ) : (
-    books.length > 0 && <Tabs contents={contents} />
-  );
+  return isLoading ? <Spinner msg="Loading" /> : <Tabs contents={contents} />;
 };
 
 export default Dashboard;
