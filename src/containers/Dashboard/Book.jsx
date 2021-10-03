@@ -46,13 +46,9 @@ const Book = ({ id, handleBackClick }) => {
               accusantium.
             </p>
             {book.isAvailable ? (
-              "yy"
+              ""
             ) : (
               <>
-                <h4>ee {book}</h4>
-
-                <h4>{`Id : ${book.id}`}</h4>
-                <h4>{`Author : ${book.author}`}</h4>
                 <h4>{`Burrowed by : ${book.burrowedMemberId}`}</h4>
                 <h4>{`Burrowed date : ${book.borrowedData}`}</h4>
               </>

@@ -8,16 +8,16 @@ import Book from "./Book";
 const Books = ({ catalog }) => {
   const [selectedBookId, setSelectedBookId] = useState(null);
 
-  // Add Custom Book by Manually..
+  //Add Custom Book by Manually..
   // const updatedCatalog = [
   //   ...catalog,
   //   {
-  //     author: "Induwara Uthsara",
-  //     burrowedDate: "",
-  //     burrowedMemberId: "",
   //     id: "3",
-  //     isAvailable: false,
-  //     title: "Ethical Hacking Handbook - 2023",
+  //     title: "dsa",
+  //     author: "Rosd Dahl",
+  //     isAvailable: true, 
+  //     burrowedMemberId: "",
+  //     burrowedDate: "",
   //   },
   // ];
 

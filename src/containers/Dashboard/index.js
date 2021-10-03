@@ -16,7 +16,7 @@ const Dashboard = () => {
     getBooks()
       .then((response) => {
         if (!response.error) {
-          console.log(response.data);
+          // console.log(response.data);
           setBooks(response.data);
         }
       })
