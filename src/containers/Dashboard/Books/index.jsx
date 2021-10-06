@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-import Table from "../../components/Table";
-import { FluidContainer } from "../../components/CommonComponents";
+import Table from "../../../components/Table";
+import { FluidContainer } from "../../../components/CommonComponents";
 
 import Book from "./Book";
 
@@ -15,7 +15,7 @@ const Books = ({ catalog }) => {
   //     id: "3",
   //     title: "dsa",
   //     author: "Rosd Dahl",
-  //     isAvailable: true, 
+  //     isAvailable: true,
   //     burrowedMemberId: "",
   //     burrowedDate: "",
   //   },

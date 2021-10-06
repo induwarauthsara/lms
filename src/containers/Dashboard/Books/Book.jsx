@@ -7,11 +7,11 @@ import {
   Container,
   ContainerInline,
   FlexRow,
-} from "../../components/CommonComponents";
-import Spinner from "../../components/spinner";
+} from "../../../components/CommonComponents";
+import Spinner from "../../../components/spinner";
 
-import { getBook } from "../../api/bookAPI";
-import BookCover from "../../shared/bookCover.png";
+import { getBook } from "../../../api/bookAPI";
+import BookCover from "../../../shared/bookCover.png";
 
 const ContainerInlineTextAlignLeft = styled(ContainerInline)`
   align-items: flex-start;
@@ -19,12 +19,12 @@ const ContainerInlineTextAlignLeft = styled(ContainerInline)`
 
 const H1 = styled.h1`
   text-align: left;
-  margin: 5px auto;
+  margin: 15px auto;
 `;
 
 const H2 = styled.h2`
   text-align: left;
-  margin: 5px auto;
+  margin: 15px auto;
 `;
 
 const Book = ({ id, handleBackClick }) => {
