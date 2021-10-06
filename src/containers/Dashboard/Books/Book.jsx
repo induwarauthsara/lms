@@ -12,7 +12,7 @@ import Spinner from "../../../components/spinner";
 import ComfirmationDialog from "../../../components/ComfirmationDialog";
 import LendDialog from "./LendDialog";
 
-import { getBook, lendBook } from "../../../api/bookAPI";
+import { getBook, lendBook, returnBook } from "../../../api/bookAPI";
 import BookCover from "../../../shared/bookCover.png";
 import { getTodayDate } from "../../../shared/utils";
 
@@ -35,6 +35,7 @@ const Book = ({ id, handleBackClick }) => {
   const [book, setBook] = useState(null);
   const [showDeleteComfirmation, setShowDeleteComfirmation] = useState(false);
   const [showLendComfirmation, setShowLendComfirmation] = useState(false);
+  const [showReturnComfirmation, setShowRetunComfirmation] = useState(false);
 
   const handleDelete = (comfirmation) => {
     if (comfirmation) {
@@ -51,6 +52,14 @@ const Book = ({ id, handleBackClick }) => {
       console.log("Book Lend to", memberId);
     }
     setShowLendComfirmation(false);
+  };
+
+  const handleReturn = (comfirmation) => {
+    if (comfirmation) {
+      console.log("Book Return Success");
+      returnBook(book.id);
+    }
+    setShowRetunComfirmation(false);
   };
 
   useEffect(() => {
@@ -90,8 +99,8 @@ const Book = ({ id, handleBackClick }) => {
                   ""
                 ) : (
                   <>
-                    <h4>{`Burrowed by : ${book.burrowedMemberId}`}</h4>
-                    <h4>{`Burrowed date : ${book.burrowedDate}`}</h4>
+                    <h4>{`Borrowed by : ${book.burrowedMemberId}`}</h4>
+                    <h4>{`Borrowed date : ${book.burrowedDate}`}</h4>
                   </>
                 )}
               </ContainerInlineTextAlignLeft>
@@ -129,7 +138,11 @@ const Book = ({ id, handleBackClick }) => {
                 </>
               ) : (
                 <>
-                  <Button onClick={() => console.log("Call retun Api")}>
+                  <Button
+                    onClick={() => {
+                      setShowRetunComfirmation(true);
+                    }}
+                  >
                     Return
                   </Button>
                 </>
@@ -140,13 +153,22 @@ const Book = ({ id, handleBackClick }) => {
           <Spinner />
         )}
       </Container>
+
       <ComfirmationDialog
         handleClose={handleDelete}
         show={showDeleteComfirmation}
         headerText="Comfirm Book Deletion"
         detailText="Are you sure you want to delete this book? This action can't be undone"
       />
+
       <LendDialog handleClose={handleLend} show={showLendComfirmation} />
+
+      <ComfirmationDialog
+        handleClose={handleReturn}
+        show={showReturnComfirmation}
+        headerText="Comfirm Book Return"
+        detailText="Press 'Comfirm' to Return Book"
+      />
     </>
   );
 };
