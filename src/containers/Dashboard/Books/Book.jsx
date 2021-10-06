@@ -12,7 +12,12 @@ import Spinner from "../../../components/spinner";
 import ComfirmationDialog from "../../../components/ComfirmationDialog";
 import LendDialog from "./LendDialog";
 
-import { getBook, lendBook, returnBook } from "../../../api/bookAPI";
+import {
+  deleteBook,
+  getBook,
+  lendBook,
+  returnBook,
+} from "../../../api/bookAPI";
 import BookCover from "../../../shared/bookCover.png";
 import { getTodayDate } from "../../../shared/utils";
 
@@ -35,7 +40,7 @@ const Book = ({ id, handleBackClick }) => {
   const [book, setBook] = useState(null);
   const [showDeleteComfirmation, setShowDeleteComfirmation] = useState(false);
   const [showLendComfirmation, setShowLendComfirmation] = useState(false);
-  const [showReturnComfirmation, setShowRetunComfirmation] = useState(false);
+  const [showReturnComfirmation, setShowRetunrComfirmation] = useState(false);
 
   const handleDelete = (comfirmation) => {
     if (comfirmation) {
@@ -59,7 +64,7 @@ const Book = ({ id, handleBackClick }) => {
       console.log("Book Return Success");
       returnBook(book.id);
     }
-    setShowRetunComfirmation(false);
+    setShowRetunrComfirmation(false);
   };
 
   useEffect(() => {
@@ -140,7 +145,7 @@ const Book = ({ id, handleBackClick }) => {
                 <>
                   <Button
                     onClick={() => {
-                      setShowRetunComfirmation(true);
+                      setShowRetunrComfirmation(true);
                     }}
                   >
                     Return
