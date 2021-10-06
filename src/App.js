@@ -32,7 +32,10 @@ function App() {
       dangerDark: "#8c0101",
     },
     secondary: {
-      main: "#fff",
+      main: "#9e9e9e",
+      light: "#cfcfcf",
+      dark: "#707070",
+      TextColor: "#fff",
     },
   };
 

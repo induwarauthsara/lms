@@ -14,7 +14,7 @@ export const NavItem = styled.li `
 
 export const NavLink = styled.a `
   display: block;
-  color: ${(props) => props.theme.secondary.main};
+  color: ${(props) => props.theme.secondary.TextColor};
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -28,6 +28,6 @@ export const NavLink = styled.a `
   }
   :active {
     background-color: ${(props) => props.theme.primary.dark};
-    color: ${(props) => props.theme.secondary.main};
+    color: ${(props) => props.theme.secondary.TextColor};
   }
 `;

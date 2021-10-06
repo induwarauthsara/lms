@@ -34,9 +34,17 @@ export const FlexRow = styled.div`
 `;
 
 export const Button = styled.button`
-  background: ${(props) =>
-    props.danger ? props.theme.primary.danger : props.theme.primary.main};
-  color: ${(props) => props.theme.secondary.main};
+  background: ${(props) => {
+    switch (props.color) {
+      case "danger":
+        return props.theme.primary.danger;
+      case "secondary":
+        return props.theme.secondary.main;
+      default:
+        return props.theme.primary.main;
+    }
+  }};
+  color: ${(props) => props.theme.secondary.TextColor};
   font-weight: bold;
   font-size: ${(props) => (props.size ? props.size : 1)}rem;
   //font-size: 1em;
@@ -47,7 +55,15 @@ export const Button = styled.button`
   margin: 1em;
 
   :hover {
-    background: ${(props) =>
-      props.danger ? props.theme.primary.dangerDark : props.theme.primary.dark};
+    background: ${(props) => {
+      switch (props.color) {
+        case "danger":
+          return props.theme.primary.dangerDark;
+        case "secondary":
+          return props.theme.secondary.dark;
+        default:
+          return props.theme.primary.dark;
+      }
+    }};
   }
 `;
