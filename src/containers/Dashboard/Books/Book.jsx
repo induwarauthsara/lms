@@ -173,7 +173,7 @@ const Book = ({ id, handleBackClick }) => {
         handleClose={handleReturn}
         show={showReturnComfirmation}
         headerText="Comfirm Book Return"
-        detailText="Press 'Comfirm' to Return Book"
+        detailText="Press 'Yes' to Confirm Return"
       />
     </>
   );
