@@ -16,7 +16,7 @@ let routes = (
   <Switch>
     <Route path={DASHBOARD} exact component={Dashboard} />{" "}
     <Route path={CATALOG} exact component={Spinner} />{" "}
-    <Route path="/" exact component ={Dashboard} />{" "}
+    <Route path="/" exact component={Dashboard} />{" "}
     <Route component={Error404} />{" "}
   </Switch>
 );
