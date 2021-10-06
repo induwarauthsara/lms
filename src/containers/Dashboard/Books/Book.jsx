@@ -40,11 +40,12 @@ const Book = ({ id, handleBackClick }) => {
   const [book, setBook] = useState(null);
   const [showDeleteComfirmation, setShowDeleteComfirmation] = useState(false);
   const [showLendComfirmation, setShowLendComfirmation] = useState(false);
-  const [showReturnComfirmation, setShowRetunrComfirmation] = useState(false);
+  const [showReturnComfirmation, setShowReturnComfirmation] = useState(false);
 
   const handleDelete = (comfirmation) => {
     if (comfirmation) {
       console.log("Comfirmation Delete Success");
+      deleteBook(book.id);
     }
     setShowDeleteComfirmation(false);
   };
@@ -64,7 +65,7 @@ const Book = ({ id, handleBackClick }) => {
       console.log("Book Return Success");
       returnBook(book.id);
     }
-    setShowRetunrComfirmation(false);
+    setShowReturnComfirmation(false);
   };
 
   useEffect(() => {
@@ -145,7 +146,7 @@ const Book = ({ id, handleBackClick }) => {
                 <>
                   <Button
                     onClick={() => {
-                      setShowRetunrComfirmation(true);
+                      setShowReturnComfirmation(true);
                     }}
                   >
                     Return
