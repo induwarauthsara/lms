@@ -12,8 +12,9 @@ import Spinner from "../../../components/spinner";
 import ComfirmationDialog from "../../../components/ComfirmationDialog";
 import LendDialog from "./LendDialog";
 
-import { getBook } from "../../../api/bookAPI";
+import { getBook, lendBook } from "../../../api/bookAPI";
 import BookCover from "../../../shared/bookCover.png";
+import { getTodayDate } from "../../../shared/utils";
 
 const ContainerInlineTextAlignLeft = styled(ContainerInline)`
   align-items: flex-start;
@@ -42,9 +43,12 @@ const Book = ({ id, handleBackClick }) => {
     setShowDeleteComfirmation(false);
   };
 
-  const handleLend = (comfirmation, member) => {
+  const handleLend = (comfirmation, memberId) => {
     if (comfirmation) {
-      console.log("Book Lend to", member);
+      lendBook(book.id, memberId, getTodayDate());
+      console.log(book.id, memberId, getTodayDate());
+
+      console.log("Book Lend to", memberId);
     }
     setShowLendComfirmation(false);
   };
@@ -87,7 +91,7 @@ const Book = ({ id, handleBackClick }) => {
                 ) : (
                   <>
                     <h4>{`Burrowed by : ${book.burrowedMemberId}`}</h4>
-                    <h4>{`Burrowed date : ${book.borrowedData}`}</h4>
+                    <h4>{`Burrowed date : ${book.burrowedDate}`}</h4>
                   </>
                 )}
               </ContainerInlineTextAlignLeft>
@@ -125,8 +129,6 @@ const Book = ({ id, handleBackClick }) => {
                 </>
               ) : (
                 <>
-                  <h4>{`Burrowed by : ${book.burrowedMemberId}`}</h4>
-                  <H2>{`Burrowed date : ${book.borrowedData}`}</H2>
                   <Button onClick={() => console.log("Call retun Api")}>
                     Return
                   </Button>

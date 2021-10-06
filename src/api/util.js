@@ -17,7 +17,7 @@ export const getRequest = async(uri) => {
 
 export const putRequest = async(uri, data) => {
     try {
-        let response = await axios.get(uri, data);
+        let response = await axios.put(uri, data);
         return {
             data: response.data,
             error: null,
