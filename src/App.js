@@ -14,10 +14,10 @@ const Error404 = React.lazy(() => import("./containers/404"));
 
 let routes = (
   <Switch>
-    <Route path={DASHBOARD} exact component={Dashboard} />
-    <Route path={CATALOG} exact component={Spinner} />
-    <Route path="/" exact component={Dashboard} />
-    <Route component={Error404} />
+    <Route path={DASHBOARD} exact component={Dashboard} />{" "}
+    <Route path={CATALOG} exact component={Spinner} />{" "}
+    <Route path="/" exact component ={Dashboard} />{" "}
+    <Route component={Error404} />{" "}
   </Switch>
 );
 
@@ -28,6 +28,8 @@ function App() {
       light: "#77e8ff",
       dark: "#0086c3",
       TextColor: "#000",
+      danger: "#e91e63",
+      dangerDark: "#8c0101",
     },
     secondary: {
       main: "#fff",
@@ -41,29 +43,25 @@ function App() {
           <NavItem>
             <NavLink href="/">
               <ImBook />
-            </NavLink>
-          </NavItem>
+            </NavLink>{" "}
+          </NavItem>{" "}
           <NavItem>
-            <NavLink href="/"> Home </NavLink>
-          </NavItem>
+            <NavLink href="/"> Home </NavLink>{" "}
+          </NavItem>{" "}
           <NavItem>
-            <NavLink href={DASHBOARD}> Dashboard </NavLink>
-          </NavItem>
+            <NavLink href={DASHBOARD}> Dashboard </NavLink>{" "}
+          </NavItem>{" "}
           <NavItem>
-            <NavLink href={CATALOG}> Catalog </NavLink>
-          </NavItem>
-        </NavBar>
-      </Header>
-
+            <NavLink href={CATALOG}> Catalog </NavLink>{" "}
+          </NavItem>{" "}
+        </NavBar>{" "}
+      </Header>{" "}
       <Main>
         <Suspense fallback={<Spinner msg="Loading.." />}>
-          <Router>{routes}</Router>
-        </Suspense>
-      </Main>
-
-      <Footer>
-        Copyright {new Date().getFullYear()} &copy; Induwara Uthsara
-      </Footer>
+          <Router> {routes} </Router>{" "}
+        </Suspense>{" "}
+      </Main>{" "}
+      <Footer> Copyright {new Date().getFullYear()}© Induwara Uthsara </Footer>{" "}
     </ThemeProvider>
   );
 }
