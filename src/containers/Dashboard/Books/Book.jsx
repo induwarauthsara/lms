@@ -9,6 +9,7 @@ import {
   FlexRow,
 } from "../../../components/CommonComponents";
 import Spinner from "../../../components/spinner";
+import ComfirmationDialog from "../../../components/ComfirmationDialog";
 
 import { getBook } from "../../../api/bookAPI";
 import BookCover from "../../../shared/bookCover.png";
@@ -30,6 +31,14 @@ const H2 = styled.h2`
 const Book = ({ id, handleBackClick }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [book, setBook] = useState(null);
+  const [showDeleteComfirmation, setShowDeleteComfirmation] = useState(false);
+
+  const handleDelete = (comfirmation) => {
+    if (comfirmation) {
+      console.log("Comfirmation Delete Success");
+    }
+    setShowDeleteComfirmation(false);
+  };
 
   useEffect(() => {
     setIsLoading(true);
@@ -48,71 +57,81 @@ const Book = ({ id, handleBackClick }) => {
   }, [id]);
 
   return (
-    <Container>
-      <Button size="1.4" onClick={handleBackClick}>
-        <IoReturnUpBack />
-      </Button>
-      {!isLoading && book !== null ? (
-        <>
-          <FlexRow>
-            <ContainerInlineTextAlignLeft>
-              <H1>{book.title}</H1>
-              <H2>{`by ${book.author}`}</H2>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Non
-                rerum quidem, quasi ab dolorem expedita quos rem veniam odit
-                accusantium.
-              </p>
+    <>
+      <Container>
+        <Button size="1.4" onClick={handleBackClick}>
+          <IoReturnUpBack />
+        </Button>
+        {!isLoading && book !== null ? (
+          <>
+            <FlexRow>
+              <ContainerInlineTextAlignLeft>
+                <H1>{book.title}</H1>
+                <H2>{`by ${book.author}`}</H2>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Non
+                  rerum quidem, quasi ab dolorem expedita quos rem veniam odit
+                  accusantium.
+                </p>
+                {book.isAvailable ? (
+                  ""
+                ) : (
+                  <>
+                    <h4>{`Burrowed by : ${book.burrowedMemberId}`}</h4>
+                    <h4>{`Burrowed date : ${book.borrowedData}`}</h4>
+                  </>
+                )}
+              </ContainerInlineTextAlignLeft>
+
+              <ContainerInline>
+                <img
+                  src={BookCover}
+                  alt="Book Cover"
+                  style={{
+                    border: "1px solid black",
+                    width: "200px",
+                    alignItem: "right",
+                  }}
+                />
+              </ContainerInline>
+            </FlexRow>
+            <FlexRow>
               {book.isAvailable ? (
-                ""
+                <>
+                  <Button onClick={() => console.log("Call lend Api")}>
+                    Lend
+                  </Button>
+                  <Button
+                    danger
+                    onClick={() => {
+                      setShowDeleteComfirmation(true);
+                    }}
+                  >
+                    Delete
+                  </Button>
+                </>
               ) : (
                 <>
                   <h4>{`Burrowed by : ${book.burrowedMemberId}`}</h4>
-                  <h4>{`Burrowed date : ${book.borrowedData}`}</h4>
+                  <H2>{`Burrowed date : ${book.borrowedData}`}</H2>
+                  <Button onClick={() => console.log("Call retun Api")}>
+                    Return
+                  </Button>
                 </>
               )}
-            </ContainerInlineTextAlignLeft>
-
-            <ContainerInline>
-              <img
-                src={BookCover}
-                alt="Book Cover"
-                style={{
-                  border: "1px solid black",
-                  width: "200px",
-                  alignItem: "right",
-                }}
-              />
-            </ContainerInline>
-          </FlexRow>
-          <FlexRow>
-            {book.isAvailable ? (
-              <>
-                <Button onClick={() => console.log("Call lend Api")}>
-                  Lend
-                </Button>
-                <Button
-                  danger
-                  onClick={() => console.log("Call deleteBook Api")}
-                >
-                  Delete
-                </Button>
-              </>
-            ) : (
-              <>
-                <h4>{`Burrowed by : ${book.burrowedMemberId}`}</h4>
-                <H2>{`Burrowed date : ${book.borrowedData}`}</H2>
-                <Button onClick={() => console.log("Call retun Api")}>
-                  Return
-                </Button>
-              </>
-            )}
-          </FlexRow>
-        </>
-      ) : (
-        <Spinner />
-      )}
-    </Container>
+            </FlexRow>
+          </>
+        ) : (
+          <Spinner />
+        )}
+      </Container>
+      <ComfirmationDialog
+        handleClose={handleDelete}
+        show={showDeleteComfirmation}
+        headerText="Comfirm Book Deletion"
+        detailText="Are you sure you want to delete this book? This action can't be undone"
+      />
+    </>
   );
 };
 

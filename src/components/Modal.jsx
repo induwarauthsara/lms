@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Modal = styled.div`
   z-index: auto;
   display: ${({ show }) => (show ? "block" : "none")};
-  possition: fixed;
+  position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
@@ -12,8 +12,8 @@ export const Modal = styled.div`
 `;
 
 export const DialogBox = styled.div`
-  possition: fixed;
-  background: antiquwhite;
+  position: fixed;
+  background: antiquewhite;
   width: 33%;
   height: auto;
   top: 50%;
