@@ -14,7 +14,7 @@ export const Modal = styled.div`
 export const DialogBox = styled.div`
   position: fixed;
   background: antiquewhite;
-  width: 33%;
+  width: 20%;
   height: auto;
   top: 50%;
   left: 50%;
