@@ -34,39 +34,34 @@ const StyledTable = styled.table`
 
 const TabelMarkup = ({ titles, data, handleClick, caption }) => (
   <StyledTable>
-    <caption> {caption} </caption>{" "}
+    <caption> {caption} </caption>
     <colgroup>
-      {" "}
       {titles.map((title, index) => (
         <col key={index} />
-      ))}{" "}
-    </colgroup>{" "}
+      ))}
+    </colgroup>
     <thead>
       <tr>
-        {" "}
         {titles.map((title, index) => (
           <th key={index}> {title} </th>
-        ))}{" "}
-      </tr>{" "}
-    </thead>{" "}
+        ))}
+      </tr>
+    </thead>
     <tbody>
-      {" "}
       {data.map((item, index) => (
         <tr key={index} onClick={() => handleClick(item.id)}>
-          {" "}
           {titles.map((title, index) => (
             <td key={index}>
-              {" "}
               {typeof item[title] == "boolean"
                 ? item[title]
                   ? "Yes"
                   : "No"
-                : item[title]}{" "}
+                : item[title]}
             </td>
-          ))}{" "}
+          ))}
         </tr>
-      ))}{" "}
-    </tbody>{" "}
+      ))}
+    </tbody>
   </StyledTable>
 );
 
