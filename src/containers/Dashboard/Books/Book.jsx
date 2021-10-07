@@ -20,6 +20,7 @@ import {
 } from "../../../api/bookAPI";
 import BookCover from "../../../shared/bookCover.png";
 import { getTodayDate } from "../../../shared/utils";
+import { getMembers } from "../../../api/memberAPI";
 
 const ContainerInlineTextAlignLeft = styled(ContainerInline)`
   align-items: flex-start;
@@ -68,6 +69,23 @@ const Book = ({ id, handleBackClick }) => {
     setShowReturnComfirmation(false);
   };
 
+  // Get Book Borrowed Member Name
+  const [members, SetMembers] = useState(null);
+
+  useEffect(() => {
+    setIsLoading(true);
+    const response = getMembers();
+    SetMembers(response);
+    setIsLoading(false);
+  }, []);
+
+  const [borrowedMember, setBorrowedMember] = useState("");
+
+  const bookBorrowedMember = (memberId) => {
+    var member = members.find((item) => item.id === memberId);
+    return member.name;
+  };
+
   useEffect(() => {
     setIsLoading(true);
     getBook(id)
@@ -105,8 +123,10 @@ const Book = ({ id, handleBackClick }) => {
                   ""
                 ) : (
                   <>
-                    <h4>{`Borrowed by : ${book.burrowedMemberId}`}</h4>
-                    <h4>{`Borrowed date : ${book.burrowedDate}`}</h4>
+                    <h4>
+                      Borrowed by : {bookBorrowedMember(book.burrowedMemberId)}
+                    </h4>
+                    <h4>Borrowed date : {book.burrowedDate}</h4>
                   </>
                 )}
               </ContainerInlineTextAlignLeft>
