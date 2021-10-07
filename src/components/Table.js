@@ -34,47 +34,53 @@ const StyledTable = styled.table`
 
 const TabelMarkup = ({ titles, data, handleClick, caption }) => (
   <StyledTable>
-    <caption>{caption}</caption>
+    <caption> {caption} </caption>{" "}
     <colgroup>
+      {" "}
       {titles.map((title, index) => (
         <col key={index} />
-      ))}
-    </colgroup>
+      ))}{" "}
+    </colgroup>{" "}
     <thead>
       <tr>
+        {" "}
         {titles.map((title, index) => (
           <th key={index}> {title} </th>
-        ))}
-      </tr>
-    </thead>
+        ))}{" "}
+      </tr>{" "}
+    </thead>{" "}
     <tbody>
+      {" "}
       {data.map((item, index) => (
         <tr key={index} onClick={() => handleClick(item.id)}>
+          {" "}
           {titles.map((title, index) => (
             <td key={index}>
+              {" "}
               {typeof item[title] == "boolean"
                 ? item[title]
                   ? "Yes"
                   : "No"
-                : item[title]}
+                : item[title]}{" "}
             </td>
-          ))}
+          ))}{" "}
         </tr>
-      ))}
-    </tbody>
+      ))}{" "}
+    </tbody>{" "}
   </StyledTable>
 );
 
-const Table = ({ data, handleRowClick, instructions }) =>
-  data ? (
+const Table = ({ data, handleRowClick, instructions }) => {
+  return data.length > 0 ? (
     <TabelMarkup
       titles={Object.keys(data[0])}
       data={data}
-      handleClick={handleRowClick}
-      caption={instructions}
+      handleClick={handleRowClick ? handleRowClick : () => {}}
+      caption={instructions ? instructions : ""}
     />
   ) : (
     "No data Pooulate"
   );
+};
 
 export default Table;

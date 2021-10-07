@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Tabs from "../../components/Tabs";
 import Spinner from "../../components/spinner";
 
-import Books from "./Books";
+import Books from "./Books/index";
 
 import { getBooks } from "../../api/bookAPI";
 
@@ -16,7 +16,7 @@ const Dashboard = () => {
     getBooks()
       .then((response) => {
         if (!response.error) {
-          console.log(response.data);
+          // console.log(response.data);
           setBooks(response.data);
         }
       })
@@ -37,11 +37,7 @@ const Dashboard = () => {
       elements: <h1> Members Content </h1>,
     },
   ];
-  return isLoading ? (
-    <Spinner msg="Loading" />
-  ) : (
-    books.length > 0 && <Tabs contents={contents} />
-  );
+  return isLoading ? <Spinner msg="Loading" /> : <Tabs contents={contents} />;
 };
 
 export default Dashboard;
