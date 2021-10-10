@@ -79,8 +79,6 @@ const Book = ({ id, handleBackClick }) => {
     setIsLoading(false);
   }, []);
 
-  const [borrowedMember, setBorrowedMember] = useState("");
-
   const bookBorrowedMember = (memberId) => {
     var member = members.find((item) => item.id === memberId);
     return member.name;
