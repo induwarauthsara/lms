@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { IoReturnUpBack } from "react-icons/io5";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
 
 import {
   Button,
@@ -21,6 +22,7 @@ import {
 import BookCover from "../../../shared/bookCover.png";
 import { getTodayDate } from "../../../shared/utils";
 import { getMembers } from "../../../api/memberAPI";
+import { updatedBooks } from "../../../Store/booksSlice";
 
 const ContainerInlineTextAlignLeft = styled(ContainerInline)`
   align-items: flex-start;
@@ -43,6 +45,8 @@ const Book = ({ id, handleBackClick }) => {
   const [showLendComfirmation, setShowLendComfirmation] = useState(false);
   const [showReturnComfirmation, setShowReturnComfirmation] = useState(false);
 
+  const dispatch = useDispatch();
+
   const handleDelete = (comfirmation) => {
     if (comfirmation) {
       console.log("Comfirmation Delete Success");
@@ -53,10 +57,23 @@ const Book = ({ id, handleBackClick }) => {
 
   const handleLend = (comfirmation, memberId) => {
     if (comfirmation) {
-      lendBook(book.id, memberId, getTodayDate());
-      console.log(book.id, memberId, getTodayDate());
+      setIsLoading(true);
+      lendBook(book.id, memberId, getTodayDate())
+        .then((response) => {
+          if (!response.error) {
+            console.log(response.data);
+            dispatch(updatedBooks(response.data));
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
 
-      console.log("Book Lend to", memberId);
+      // console.log(book.id, memberId, getTodayDate());
+      // console.log("Book Lend to", memberId);
     }
     setShowLendComfirmation(false);
   };
