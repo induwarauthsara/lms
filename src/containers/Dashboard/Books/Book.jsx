@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { IoReturnUpBack } from "react-icons/io5";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   Button,
@@ -13,12 +13,7 @@ import Spinner from "../../../components/spinner";
 import ComfirmationDialog from "../../../components/ComfirmationDialog";
 import LendDialog from "./LendDialog";
 
-import {
-  deleteBook,
-  getBook,
-  lendBook,
-  returnBook,
-} from "../../../api/bookAPI";
+import { deleteBook, lendBook, returnBook } from "../../../api/bookAPI";
 import BookCover from "../../../shared/bookCover.png";
 import { getTodayDate } from "../../../shared/utils";
 import { getMembers } from "../../../api/memberAPI";
@@ -43,12 +38,16 @@ const H2 = styled.h2`
 
 const Book = ({ id, handleBackClick }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [book, setBook] = useState(null);
+  // const [book, setBook] = useState(null);   // console.log("This Code Removed. Becouse API Call replace to Redux");
   const [showDeleteComfirmation, setShowDeleteComfirmation] = useState(false);
   const [showLendComfirmation, setShowLendComfirmation] = useState(false);
   const [showReturnComfirmation, setShowReturnComfirmation] = useState(false);
 
   const dispatch = useDispatch();
+
+  // Selectde Book Details veriable from Redux Store
+  const books = useSelector((state) => state.books.value);
+  const book = books.find((element) => element.id === id);
 
   const handleDelete = (comfirmation) => {
     if (comfirmation) {
@@ -56,7 +55,8 @@ const Book = ({ id, handleBackClick }) => {
       deleteBook(book.id)
         .then((response) => {
           if (!response.error) {
-            console.log(response.data);
+            // console.log(response.data);
+            handleBackClick();
             dispatch(deleteBookStore(response.data));
           }
         })
@@ -114,34 +114,28 @@ const Book = ({ id, handleBackClick }) => {
   };
 
   // Get Book Borrowed Member Name
-  const [members, SetMembers] = useState(null);
-  useEffect(() => {
-    setIsLoading(true);
-    const response = getMembers();
-    SetMembers(response);
-    setIsLoading(false);
-  }, []);
-
   const bookBorrowedMember = (memberId) => {
-    var member = members.find((item) => item.id === memberId);
+    const MembersList = getMembers();
+    var member = MembersList.find((item) => item.id === memberId);
     return member.name;
   };
 
-  useEffect(() => {
-    setIsLoading(true);
-    getBook(id)
-      .then((response) => {
-        if (!response.error) {
-          setBook(response.data);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, [id]);
+  // console.log("This Code Removed. Becouse API Call replace to Redux");
+  // useEffect(() => {
+  //   setIsLoading(true);
+  //   getBook(id)
+  //     .then((response) => {
+  //       if (!response.error) {
+  //         setBook(response.data);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     })
+  //     .finally(() => {
+  //       setIsLoading(false);
+  //     });
+  // }, [id]);
 
   return (
     <>
