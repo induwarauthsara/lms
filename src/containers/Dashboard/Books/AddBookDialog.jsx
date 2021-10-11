@@ -20,9 +20,8 @@ export default function AddBookDialog({ handleClose, show }) {
 
   const sendDone = () => {
     if (title !== "" && author !== "") {
-      const data = { title, author };
       ClearInput();
-      handleClose(true, { title, data });
+      handleClose(true, { title, author });
     } else if (title === "") {
       window.alert("Please enter a title to add.");
     } else {
