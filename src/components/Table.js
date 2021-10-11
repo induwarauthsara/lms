@@ -6,7 +6,7 @@ const StyledTable = styled.table`
   td,
   th,
   tr {
-    border: 2px solid black;
+    //border: 2px solid black;
     padding: 5px;
   }
   td {
@@ -14,7 +14,7 @@ const StyledTable = styled.table`
   }
   tbody tr {
     :nth-of-type(even) {
-      background-color: #ddd;
+      background-color: #ededed;
       border: 1px solid;
     }
     :hover {
