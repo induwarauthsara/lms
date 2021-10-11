@@ -22,7 +22,10 @@ import {
 import BookCover from "../../../shared/bookCover.png";
 import { getTodayDate } from "../../../shared/utils";
 import { getMembers } from "../../../api/memberAPI";
-import { updatedBooks } from "../../../Store/booksSlice";
+import {
+  updatedBooks,
+  deleteBook as deleteBookStore,
+} from "../../../Store/booksSlice";
 
 const ContainerInlineTextAlignLeft = styled(ContainerInline)`
   align-items: flex-start;
@@ -50,7 +53,19 @@ const Book = ({ id, handleBackClick }) => {
   const handleDelete = (comfirmation) => {
     if (comfirmation) {
       console.log("Comfirmation Delete Success");
-      deleteBook(book.id);
+      deleteBook(book.id)
+        .then((response) => {
+          if (!response.error) {
+            console.log(response.data);
+            dispatch(deleteBookStore(response.data));
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
     }
     setShowDeleteComfirmation(false);
   };
@@ -80,15 +95,26 @@ const Book = ({ id, handleBackClick }) => {
 
   const handleReturn = (comfirmation) => {
     if (comfirmation) {
-      console.log("Book Return Success");
-      returnBook(book.id);
+      // console.log("Book Return Success");
+      returnBook(book.id)
+        .then((response) => {
+          if (!response.error) {
+            console.log(response.data);
+            dispatch(updatedBooks(response.data));
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
     }
     setShowReturnComfirmation(false);
   };
 
   // Get Book Borrowed Member Name
   const [members, SetMembers] = useState(null);
-
   useEffect(() => {
     setIsLoading(true);
     const response = getMembers();
