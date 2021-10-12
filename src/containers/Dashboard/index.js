@@ -5,6 +5,7 @@ import Tabs from "../../components/Tabs";
 import Spinner from "../../components/spinner";
 
 import Books from "./Books/index";
+import Members from "./Members/index";
 
 import { setBooks } from "../../Store/booksSlice";
 import { getBooks } from "../../api/bookAPI";
@@ -41,7 +42,7 @@ const Dashboard = () => {
     },
     {
       title: "Members",
-      elements: <h1> Members Content </h1>,
+      elements: <Members catalog={booksFromRedux} />,
     },
   ];
   return isLoading ? <Spinner msg="Loading" /> : <Tabs contents={contents} />;
