@@ -25,7 +25,7 @@ function App() {
   const theme = {
     primary: {
       main: "#29b6f6",
-      light: "#dcf3fa",//"77e8ff",
+      light: "#dcf3fa", //"77e8ff",
       dark: "#0086c3",
       TextColor: "#000",
       danger: "#e91e63",

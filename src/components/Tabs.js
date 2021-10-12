@@ -71,7 +71,6 @@ export default function Tabs(props) {
             active={active === index}
             key={index}
           >
-            {" "}
             {contents.title}{" "}
           </Tab>
         ))}{" "}
