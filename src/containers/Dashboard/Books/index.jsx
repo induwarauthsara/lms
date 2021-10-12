@@ -19,22 +19,30 @@ const Books = ({ catalog }) => {
   const [showAddBookDialog, setShowAddBookDialog] = useState(false);
 
   const dispatch = useDispatch();
-  
+
   //Add Custom Book by Manually..
   if (!catalog) {
     catalog = [
       {
         id: "1",
-        title: "dsa",
-        author: "Rosd Dahl",
+        title: "Harry Potter",
+        author: "J. K. Rowling",
         isAvailable: true,
         burrowedMemberId: "",
         burrowedDate: "",
       },
       {
         id: "2",
-        title: "dsa",
-        author: "Rosd Dahl",
+        title: "Charlie and the Chocolate Factory",
+        author: "Roald Dahl",
+        isAvailable: true,
+        burrowedMemberId: "",
+        burrowedDate: "",
+      },
+      {
+        id: "3",
+        title: "Ethical Hacking Guid Book - 2023",
+        author: "Induwara Uthsara",
         isAvailable: true,
         burrowedMemberId: "",
         burrowedDate: "",
