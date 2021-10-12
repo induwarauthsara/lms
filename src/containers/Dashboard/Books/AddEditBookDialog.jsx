@@ -29,7 +29,6 @@ export default function AddEditBookDialog({
 
   const sendDone = () => {
     if (title !== "" && author !== "") {
-      const data = { title, author };
       ClearInput();
       handleClose(true, { title, author });
     } else if (title === "") {
