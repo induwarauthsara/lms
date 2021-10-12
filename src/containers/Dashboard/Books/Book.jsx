@@ -118,7 +118,7 @@ const Book = ({ id, handleBackClick }) => {
   };
 
   const handleEdit = (comfirmation, data) => {
-    if ((comfirmation, data)) {
+    if (comfirmation) {
       // console.log("Book Edit Success");
       editBook(book.id, data)
         .then((response) => {
