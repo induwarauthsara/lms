@@ -12,8 +12,14 @@ import {
 import Spinner from "../../../components/spinner";
 import ComfirmationDialog from "../../../components/ComfirmationDialog";
 import LendDialog from "./LendDialog";
+import AddEditBookDialog from "./AddEditBookDialog";
 
-import { deleteBook, lendBook, returnBook } from "../../../api/bookAPI";
+import {
+  deleteBook,
+  lendBook,
+  returnBook,
+  editBook,
+} from "../../../api/bookAPI";
 import BookCover from "../../../shared/bookCover.png";
 import { getTodayDate } from "../../../shared/utils";
 import { getMembers } from "../../../api/memberAPI";
@@ -42,6 +48,7 @@ const Book = ({ id, handleBackClick }) => {
   const [showDeleteComfirmation, setShowDeleteComfirmation] = useState(false);
   const [showLendComfirmation, setShowLendComfirmation] = useState(false);
   const [showReturnComfirmation, setShowReturnComfirmation] = useState(false);
+  const [showEditComfirmation, setShowEditComfirmation] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -108,6 +115,26 @@ const Book = ({ id, handleBackClick }) => {
         });
     }
     setShowReturnComfirmation(false);
+  };
+
+  const handleEdit = (comfirmation, data) => {
+    if ((comfirmation, data)) {
+      // console.log("Book Edit Success");
+      editBook(book.id, data)
+        .then((response) => {
+          if (!response.error) {
+            console.log(response.data);
+            dispatch(updatedBooks(response.data));
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }
+    setShowEditComfirmation(false);
   };
 
   // Get Book Borrowed Member Name
@@ -186,6 +213,13 @@ const Book = ({ id, handleBackClick }) => {
                     Lend
                   </Button>
                   <Button
+                    onClick={() => {
+                      setShowEditComfirmation(true);
+                    }}
+                  >
+                    Edit
+                  </Button>
+                  <Button
                     color="danger"
                     onClick={() => {
                       setShowDeleteComfirmation(true);
@@ -220,6 +254,13 @@ const Book = ({ id, handleBackClick }) => {
       />
 
       <LendDialog handleClose={handleLend} show={showLendComfirmation} />
+
+      <AddEditBookDialog
+        handleClose={handleEdit}
+        show={showEditComfirmation}
+        data={book}
+        isEdit="true"
+      />
 
       <ComfirmationDialog
         handleClose={handleReturn}

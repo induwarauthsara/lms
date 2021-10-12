@@ -9,7 +9,7 @@ import {
 } from "../../../components/CommonComponents";
 
 import Book from "./Book";
-import AddBookDialog from "./AddBookDialog";
+import AddEditBookDialog from "./AddEditBookDialog";
 import { addBook } from "../../../api/bookAPI";
 import { addBook as addBookStore } from "../../../Store/booksSlice";
 import { useDispatch } from "react-redux";
@@ -84,7 +84,7 @@ const Books = ({ catalog }) => {
           instructions="Click Row to View Book"
         />
       </FluidContainer>
-      <AddBookDialog show={showAddBookDialog} handleClose={handleAddBook} />
+      <AddEditBookDialog show={showAddBookDialog} handleClose={handleAddBook} />
     </>
   ) : (
     <Book id={selectedBookId} handleBackClick={handleBookViewBackClick} />
