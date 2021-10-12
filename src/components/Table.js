@@ -74,8 +74,8 @@ const Table = ({ data, handleRowClick, instructions }) => {
       caption={instructions ? instructions : ""}
     />
   ) : (
+    // console.log(typeof data)
     "No data Pooulate"
   );
 };
-
 export default Table;
