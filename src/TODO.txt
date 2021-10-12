@@ -1,0 +1,7 @@
+*TODO*
+
+Catalog
+Remove Console.log & Comments //
+
+Add BooksCatalog
+Add Valid Links (Buttons) to 404 Page

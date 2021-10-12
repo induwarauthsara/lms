@@ -9,25 +9,38 @@ import {
 } from "../../../components/CommonComponents";
 
 import Book from "./Book";
-import AddBookDialog from "./AddBookDialog";
+import AddEditBookDialog from "./AddEditBookDialog";
 import { addBook } from "../../../api/bookAPI";
+import { addBook as addBookStore } from "../../../Store/booksSlice";
+import { useDispatch } from "react-redux";
 
 const Books = ({ catalog }) => {
   const [selectedBookId, setSelectedBookId] = useState(null);
   const [showAddBookDialog, setShowAddBookDialog] = useState(false);
 
+  const dispatch = useDispatch();
+  
   //Add Custom Book by Manually..
-  // const updatedCatalog = [
-  //   ...catalog,
-  //   {
-  //     id: "3",
-  //     title: "dsa",
-  //     author: "Rosd Dahl",
-  //     isAvailable: true,
-  //     burrowedMemberId: "",
-  //     burrowedDate: "",
-  //   },
-  // ];
+  if (!catalog) {
+    catalog = [
+      {
+        id: "1",
+        title: "dsa",
+        author: "Rosd Dahl",
+        isAvailable: true,
+        burrowedMemberId: "",
+        burrowedDate: "",
+      },
+      {
+        id: "2",
+        title: "dsa",
+        author: "Rosd Dahl",
+        isAvailable: true,
+        burrowedMemberId: "",
+        burrowedDate: "",
+      },
+    ];
+  }
 
   const handleTabRowClick = (id) => {
     setSelectedBookId(id);
@@ -41,8 +54,18 @@ const Books = ({ catalog }) => {
 
   const handleAddBook = (confirmed, data) => {
     if (confirmed) {
-      addBook(data);
-      console.log(data);
+      addBook(data)
+        .then((response) => {
+          if (!response.error) {
+            console.log(response.data);
+            dispatch(addBookStore(response.data));
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {});
+      // console.log(data);
     }
     setShowAddBookDialog(false);
   };
@@ -71,7 +94,7 @@ const Books = ({ catalog }) => {
           instructions="Click Row to View Book"
         />
       </FluidContainer>
-      <AddBookDialog show={showAddBookDialog} handleClose={handleAddBook} />
+      <AddEditBookDialog show={showAddBookDialog} handleClose={handleAddBook} />
     </>
   ) : (
     <Book id={selectedBookId} handleBackClick={handleBookViewBackClick} />

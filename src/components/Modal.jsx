@@ -15,6 +15,7 @@ export const DialogBox = styled.div`
   position: fixed;
   background: antiquewhite;
   width: 20%;
+  min-width: 350px;
   height: auto;
   top: 50%;
   left: 50%;

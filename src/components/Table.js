@@ -6,7 +6,7 @@ const StyledTable = styled.table`
   td,
   th,
   tr {
-    border: 2px solid black;
+    //border: 2px solid black;
     padding: 5px;
   }
   td {
@@ -14,7 +14,7 @@ const StyledTable = styled.table`
   }
   tbody tr {
     :nth-of-type(even) {
-      background-color: #ddd;
+      background-color: #ededed;
       border: 1px solid;
     }
     :hover {
@@ -66,7 +66,7 @@ const TabelMarkup = ({ titles, data, handleClick, caption }) => (
 );
 
 const Table = ({ data, handleRowClick, instructions }) => {
-  return data.length > 0 ? (
+  return Object.keys(data).length !== 0 ? (
     <TabelMarkup
       titles={Object.keys(data[0])}
       data={data}
@@ -74,8 +74,8 @@ const Table = ({ data, handleRowClick, instructions }) => {
       caption={instructions ? instructions : ""}
     />
   ) : (
+    // console.log(typeof data)
     "No data Pooulate"
   );
 };
-
 export default Table;
