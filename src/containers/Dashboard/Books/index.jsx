@@ -19,18 +19,6 @@ const Books = ({ catalog }) => {
   const [showAddBookDialog, setShowAddBookDialog] = useState(false);
 
   const dispatch = useDispatch();
-  //Add Custom Book by Manually..
-  // const updatedCatalog = [
-  //   ...catalog,
-  //   {
-  //     id: "3",
-  //     title: "dsa",
-  //     author: "Rosd Dahl",
-  //     isAvailable: true,
-  //     burrowedMemberId: "",
-  //     burrowedDate: "",
-  //   },
-  // ];
 
   const handleTabRowClick = (id) => {
     setSelectedBookId(id);
