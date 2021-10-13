@@ -10,8 +10,8 @@ import {
 
 import Member from "./Member";
 import AddEditMemberDialog from "./AddEditMemberDialog";
-import { addBook } from "../../../api/bookAPI";
-import { addBook as addBookStore } from "../../../Store/booksSlice";
+import { addMemberAPI } from "../../../api/memberAPI";
+import { addMember as addMemberStore } from "../../../Store/membersSlice";
 import { useDispatch } from "react-redux";
 
 const Members = ({ catalog }) => {
@@ -38,20 +38,21 @@ const Members = ({ catalog }) => {
     setSelectedBookId(null);
   };
 
-  const handleAddBook = (confirmed, data) => {
+  const handleAddMember = (confirmed, data) => {
     if (confirmed) {
-      addBook(data)
-        .then((response) => {
-          if (!response.error) {
-            console.log(response.data);
-            dispatch(addBookStore(response.data));
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        })
-        .finally(() => {});
-      // console.log(data);
+      // addBook(data)
+      //   .then((response) => {
+      //     if (!response.error) {
+      //       console.log(response.data);
+      addMemberAPI(data);
+      dispatch(addMemberStore(data));
+      //     }
+      //   })
+      //   .catch((error) => {
+      //     console.log(error);
+      //   })
+      //   .finally(() => {});
+      // // console.log(data);
     }
     setShowAddBookDialog(false);
   };
@@ -82,7 +83,7 @@ const Members = ({ catalog }) => {
       </FluidContainer>
       <AddEditMemberDialog
         show={showAddBookDialog}
-        handleClose={handleAddBook}
+        handleClose={handleAddMember}
       />
     </>
   ) : (
