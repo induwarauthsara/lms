@@ -7,7 +7,7 @@ import {
 } from "../../../components/CommonComponents";
 import { Modal, DialogBox } from "../../../components/Modal";
 
-import Input from "../../../components/Input";
+import Input, { Select } from "../../../components/Input";
 
 export default function AddEditBookDialog({
   isEdit = false,
@@ -15,26 +15,64 @@ export default function AddEditBookDialog({
   show,
   data,
 }) {
-  const [title, setTitle] = useState(
-    isEdit && data && data.title ? data.title : ""
+  const [nic, setNic] = useState(isEdit && data && data.nic ? data.nic : "");
+  const [firstName, setFirstName] = useState(
+    isEdit && data && data.firstName ? data.firstName : ""
   );
-  const [author, setAuthor] = useState(
-    isEdit && data && data.author ? data.author : ""
+  const [middleName, setMiddleName] = useState(
+    isEdit && data && data.middleName ? data.middleName : ""
+  );
+  const [lastName, setLastName] = useState(
+    isEdit && data && data.lastName ? data.lastName : ""
+  );
+  const [contactNo, setContactNo] = useState(
+    isEdit && data && data.contactNo ? data.contactNo : ""
+  );
+  const [address, setAddress] = useState(
+    isEdit && data && data.address ? data.address : ""
+  );
+  const [userType, setUserType] = useState(
+    isEdit && data && data.userType ? data.userType : ""
   );
 
   const ClearInput = () => {
-    setTitle("");
-    setAuthor("");
+    setNic("");
+    setFirstName("");
+    setMiddleName("");
+    setLastName("");
+    setContactNo("");
+    setAddress("");
+    setUserType("");
   };
 
   const sendDone = () => {
-    if (title !== "" && author !== "") {
+    if (
+      nic !== "" &&
+      firstName !== "" &&
+      middleName !== "" &&
+      lastName !== "" &&
+      contactNo !== "" &&
+      address !== "" &&
+      userType !== ""
+    ) {
       ClearInput();
-      handleClose(true, { title, author });
-    } else if (title === "") {
-      window.alert(`Please enter a title to ${isEdit ? "edit" : "add"}.`);
+      handleClose(true, {
+        nic,
+        firstName,
+        middleName,
+        lastName,
+        contactNo,
+        address,
+        userType,
+      });
+    } else if (firstName === "") {
+      window.alert(
+        `Please enter a First Name to ${isEdit ? "edit" : "add"} Member`
+      );
     } else {
-      window.alert(`Please enter a author to ${isEdit ? "edit" : "add"}.`);
+      window.alert(
+        `Please fill all fields to ${isEdit ? "edit" : "add"} Member.`
+      );
     }
   };
 
@@ -46,29 +84,81 @@ export default function AddEditBookDialog({
   return (
     <Modal show={show}>
       <DialogBox>
-        <h2>{isEdit ? "Edit" : "Add"} Book</h2>
-        <p>{isEdit ? "Edit" : "Enter"} the below details of the Book</p>
+        <h2>{isEdit ? "Edit" : "Add"} Member</h2>
+        <p>{isEdit ? "Edit" : "Enter"} the below details of the Member</p>
         <Container alignItems="center" disableFullWidth>
           <Input
-            label="Title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            label="NIC Number"
+            value={nic}
+            onChange={(e) => setNic(e.target.value)}
             type="text"
-            id="title"
-            name="title"
+            id="nic"
+            name="nic"
             required
             minLength="1"
           />
           <Input
-            label="Author"
-            value={author}
-            onChange={(e) => setAuthor(e.target.value)}
+            label="First Name"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
             type="text"
-            id="author"
-            name="author"
+            id="firstName"
+            name="firstName"
             required
             minLength="1"
           />
+          <Input
+            label="Middle Name"
+            value={middleName}
+            onChange={(e) => setMiddleName(e.target.value)}
+            type="text"
+            id="middleName"
+            name="middleName"
+            required
+            minLength="1"
+          />
+          <Input
+            label="Last Name"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            type="text"
+            id="lastName"
+            name="lastName"
+            required
+            minLength="1"
+          />
+          <Input
+            label="Contact Number"
+            value={contactNo}
+            onChange={(e) => setContactNo(e.target.value)}
+            type="number"
+            id="contactNo"
+            name="contactNo"
+            required
+            minLength="1"
+          />
+          <Input
+            label="Address"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            type="text"
+            id="address"
+            name="address"
+            required
+            minLength="1"
+          />
+          <Select
+            label="User Type"
+            onChange={(e) => setUserType(e.target.value)}
+            value={userType}
+            id="userType"
+            name="userType"
+          >
+            <option>Select User Type</option>
+            <option value="School">School</option>
+            <option value="University">University</option>
+            <option value="Employed">Employed</option>
+          </Select>
         </Container>
         <FlexRow>
           <Button onClick={sendDone}>Done</Button>

@@ -77,7 +77,7 @@ const Members = ({ catalog }) => {
         <Table
           data={catalog}
           handleRowClick={handleTabRowClick}
-          instructions="Click Row to View Book"
+          instructions="Click Row to View Member"
         />
       </FluidContainer>
       <AddEditMemberDialog
