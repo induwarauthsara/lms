@@ -6,7 +6,7 @@ const lmsAPIhost =
     process.env.NODE_ENV === "development" ? lmsAPIhostDev : lmsAPIhostPod;
 //const lmsAPIhost = lmsAPIhostDev;
 const instance = axios.create({
-    baseUrl: lmsAPIhost,
+    baseURL: lmsAPIhost,
 });
 
 export default instance;

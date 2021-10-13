@@ -1,7 +1,7 @@
 import { postRequest, deleteRequest, getRequest, putRequest } from "./util";
 
 // const BASE_URL = "/book";
-const BASE_URL = "http://localhost:3001/book";
+const BASE_URL = "/book";
 
 export const getBooks = () => getRequest(`${BASE_URL}`);
 
