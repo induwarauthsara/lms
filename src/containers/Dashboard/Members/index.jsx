@@ -20,33 +20,11 @@ const Members = ({ catalog }) => {
 
   const dispatch = useDispatch();
 
-  //Add Custom Book by Manually..
+  //Add Custom Members by Manually..
   if (!catalog) {
     catalog = [
-      {
-        id: "1",
-        title: "Harry Potter",
-        author: "J. K. Rowling",
-        isAvailable: true,
-        burrowedMemberId: "",
-        burrowedDate: "",
-      },
-      {
-        id: "2",
-        title: "Charlie and the Chocolate Factory",
-        author: "Roald Dahl",
-        isAvailable: true,
-        burrowedMemberId: "",
-        burrowedDate: "",
-      },
-      {
-        id: "3",
-        title: "Ethical Hacking Guid Book - 2023",
-        author: "Induwara Uthsara",
-        isAvailable: true,
-        burrowedMemberId: "",
-        burrowedDate: "",
-      },
+      { id: "1", name: "Induwara Uhsara" },
+      { id: "2", name: "Red Bird" },
     ];
   }
 
