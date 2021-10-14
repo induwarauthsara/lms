@@ -2,6 +2,11 @@
 
 Catalog
 Remove Console.log & Comments //
+Check Coge Syntax mula idan
 
 Add BooksCatalog
 Add Valid Links (Buttons) to 404 Page
+Check UI Styles
+Deploy FireBase
+Video Reacoding
+ReadMe file
