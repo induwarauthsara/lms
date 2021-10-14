@@ -22,7 +22,6 @@ import {
 } from "../../../api/bookAPI";
 import BookCover from "../../../shared/bookCover.png";
 import { getTodayDate } from "../../../shared/utils";
-import { getMembers } from "../../../api/memberAPI";
 import {
   updatedBooks,
   deleteBook as deleteBookStore,
@@ -136,10 +135,11 @@ const Book = ({ id, handleBackClick }) => {
     }
     setShowEditComfirmation(false);
   };
+  const membersFromReduxStore = useSelector((state) => state.members.value);
 
   // Get Book Borrowed Member Name
-  const bookBorrowedMember = (memberId) => {
-    const MembersList = getMembers();
+  const bookBorrowedMember = (memberId, membersFromReduxStore) => {
+    const MembersList = membersFromReduxStore;
     var member = MembersList.find((item) => item.id === memberId);
     var MemberFullName =
       member.firstName + " " + member.middleName + " " + member.lastName;
@@ -185,7 +185,11 @@ const Book = ({ id, handleBackClick }) => {
                 ) : (
                   <>
                     <h4>
-                      Borrowed by : {bookBorrowedMember(book.burrowedMemberId)}
+                      Borrowed by :{" "}
+                      {bookBorrowedMember(
+                        book.burrowedMemberId,
+                        membersFromReduxStore
+                      )}
                     </h4>
                     <h4>Borrowed date : {book.burrowedDate}</h4>
                   </>

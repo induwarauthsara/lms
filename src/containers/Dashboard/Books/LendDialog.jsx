@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 import { Button, FlexRow, Select } from "../../../components/CommonComponents";
 import { Modal, DialogBox } from "../../../components/Modal";
 import Spinner from "../../../components/spinner";
-
-import { getMembers } from "../../../api/memberAPI";
 
 export default function LendDialog({ handleClose, show }) {
   const [member, SetMember] = useState("");
@@ -20,13 +19,14 @@ export default function LendDialog({ handleClose, show }) {
   };
 
   const sendCancle = () => handleClose(false, null);
+  const membersFromReduxStore = useSelector((state) => state.members.value);
 
   useEffect(() => {
     setIsLoading(true);
-    const response = getMembers();
+    const response = membersFromReduxStore;
     SetMembers(response);
     setIsLoading(false);
-  }, []);
+  }, [membersFromReduxStore]);
 
   return (
     <Modal show={show}>
