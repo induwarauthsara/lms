@@ -81,7 +81,6 @@ export default function AddEditBookDialog({
   const sendCancel = () => {
     !isEdit && ClearInput();
     handleClose(false, null);
-    
   };
 
   return (
@@ -157,10 +156,9 @@ export default function AddEditBookDialog({
             id="userType"
             name="userType"
           >
-            <option>Select User Type</option>
             <option value="School">School</option>
             <option value="University">University</option>
-            <option value="Employed">Employed</option>
+            <option value="Employed">Employe</option>
           </Select>
         </Container>
         <FlexRow>
