@@ -23,8 +23,10 @@ export default function AddEditBookDialog({
   );
 
   const ClearInput = () => {
-    setTitle("");
-    setAuthor("");
+    if (!isEdit) {
+      setTitle("");
+      setAuthor("");
+    }
   };
 
   const sendDone = () => {
