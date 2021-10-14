@@ -43,7 +43,11 @@ export default function LendDialog({ handleClose, show }) {
               <option value="">-- Please Select a Member</option>
               {members.map((member, index) => (
                 <option key={index} value={member.id}>
-                  {member.name}
+                  {member.firstName +
+                    " " +
+                    member.middleName +
+                    " " +
+                    member.lastName}
                 </option>
               ))}
             </Select>

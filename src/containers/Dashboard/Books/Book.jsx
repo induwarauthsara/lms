@@ -141,7 +141,9 @@ const Book = ({ id, handleBackClick }) => {
   const bookBorrowedMember = (memberId) => {
     const MembersList = getMembers();
     var member = MembersList.find((item) => item.id === memberId);
-    return member.name;
+    var MemberFullName =
+      member.firstName + " " + member.middleName + " " + member.lastName;
+    return MemberFullName;
   };
 
   // console.log("This Code Removed. Becouse API Call replace to Redux");
