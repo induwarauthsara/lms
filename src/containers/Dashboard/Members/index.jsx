@@ -15,7 +15,7 @@ import { addMember as addMemberStore } from "../../../Store/membersSlice";
 import { useDispatch } from "react-redux";
 
 const Members = ({ catalog }) => {
-  const [selectedBookId, setSelectedBookId] = useState(null);
+  const [selectedMemberId, setSelectedMemberId] = useState(null);
   const [showAddMemberDialog, setShowAddMemberDialog] = useState(false);
   const [makeNewMemberId, setMakeNewMemberId] = useState(
     getMembers().length + 1
@@ -33,13 +33,13 @@ const Members = ({ catalog }) => {
   }
 
   const handleTabRowClick = (id) => {
-    setSelectedBookId(id);
+    setSelectedMemberId(id);
     // alert(id);
     // console.log(id);
   };
 
-  const handleBookViewBackClick = () => {
-    setSelectedBookId(null);
+  const handleMemberViewBackClick = () => {
+    setSelectedMemberId(null);
   };
 
   const handleAddMember = (confirmed, data) => {
@@ -48,12 +48,12 @@ const Members = ({ catalog }) => {
       setMakeNewMemberId(makeNewMemberId + 1);
       var NewId = String(makeNewMemberId);
       const newData = { ...data, id: NewId };
-
       dispatch(addMemberStore(newData));
     }
+    setShowAddMemberDialog(false);
   };
 
-  return selectedBookId === null ? (
+  return selectedMemberId === null ? (
     <>
       <FluidContainer>
         <Container
@@ -83,7 +83,7 @@ const Members = ({ catalog }) => {
       />
     </>
   ) : (
-    <Member id={selectedBookId} handleBackClick={handleBookViewBackClick} />
+    <Member id={selectedMemberId} handleBackClick={handleMemberViewBackClick} />
   );
 };
 

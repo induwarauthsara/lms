@@ -30,6 +30,7 @@ export const ContainerInline = styled.div`
 `;
 
 export const FlexRow = styled.div`
+  width: ${(props) => (props.width ? props.width : "")};
   display: flex;
   //flex-direction: column;
   //justify-content: space-between;

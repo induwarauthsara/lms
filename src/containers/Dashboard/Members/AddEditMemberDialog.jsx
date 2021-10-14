@@ -36,13 +36,15 @@ export default function AddEditBookDialog({
   );
 
   const ClearInput = () => {
-    setNic("");
-    setFirstName("");
-    setMiddleName("");
-    setLastName("");
-    setContactNo("");
-    setAddress("");
-    setUserType("");
+    if (!isEdit) {
+      setNic("");
+      setFirstName("");
+      setMiddleName("");
+      setLastName("");
+      setContactNo("");
+      setAddress("");
+      setUserType("");
+    }
   };
 
   const sendDone = () => {
@@ -79,6 +81,7 @@ export default function AddEditBookDialog({
   const sendCancel = () => {
     !isEdit && ClearInput();
     handleClose(false, null);
+    
   };
 
   return (
