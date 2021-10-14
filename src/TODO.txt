@@ -2,6 +2,8 @@
 
 Catalog
 Remove Console.log & Comments //
+Remove Unnecesary Spaces. like {" "}
+Rename JSX to JS
 Check Coge Syntax mula idan
 
 Add BooksCatalog
