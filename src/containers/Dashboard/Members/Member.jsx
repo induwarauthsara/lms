@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoReturnUpBack } from "react-icons/io5";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,7 +16,7 @@ import AddEditMemberDialog from "./AddEditMemberDialog";
 // import { deletemember, editmember } from "../../../api/memberAPI";
 import memberCover from "../../../shared/memberCover.png";
 // import { getTodayDate } from "../../../shared/utils";
-import { getMembers } from "../../../api/memberAPI";
+// import { getMembers } from "../../../api/memberAPI";
 import {
   updatedMembers,
   deleteMember as deleteMemberStore,
@@ -37,22 +37,42 @@ const H2 = styled.h2`
   text-align: center;
   margin: 10px auto;
 `;
+
+const H3 = styled.h3`
+  text-align: center;
+  margin: 10px auto;
+`;
+
 const H4 = styled.h4`
   text-align: center;
   margin: 0px auto;
 `;
 
+const H5 = styled.p`
+  line-height: 1.5rem;
+  font-size: 1rem;
+  possition: inline;
+`;
+
+const HR = styled.hr`
+  background-color: #000;
+  color: #000;
+  height: 5px;
+  width: 100%;
+`;
+
 const Member = ({ id, handleBackClick }) => {
   const [isLoading, setIsLoading] = useState(false);
-  // const [member, setmember] = useState(null);   // console.log("This Code Removed. Becouse API Call replace to Redux");
   const [showDeleteComfirmation, setShowDeleteComfirmation] = useState(false);
   const [showEditComfirmation, setShowEditComfirmation] = useState(false);
+  const [MemberborrowedBook, SetMemberborrowedBook] = useState(null);
 
   const dispatch = useDispatch();
 
-  // Selectde member Details veriable from Redux Store
+  // Select Redux Store Data
   const members = useSelector((state) => state.members.value);
   const member = members.find((element) => element.id === id);
+  const books = useSelector((state) => state.books.value);
 
   const handleDelete = (comfirmation) => {
     if (comfirmation) {
@@ -62,22 +82,29 @@ const Member = ({ id, handleBackClick }) => {
     }
     setShowDeleteComfirmation(false);
   };
+  const MemberId = member.id;
 
   const handleEdit = (comfirmation, data) => {
     if (comfirmation) {
       // console.log("member Edit Success");
-      dispatch(updatedMembers(member.id));
+      const newData = { id: MemberId, ...data };
+      dispatch(updatedMembers(newData));
     }
     setShowEditComfirmation(false);
   };
 
-  // // Check is Member borrowed member?
-  // const memberBorrowedMember = (memberId) => {
-  //   const MembersList = getMembers();
-  //   var member = MembersList.find((item) => item.id === memberId);
-  //   return member.name;
+  // Check selected Member borrowed any Book?
+  useEffect(() => {
+    const borrowedBookDetails = books.find(
+      (item) => item.burrowedMemberId === MemberId
+    );
+    if (borrowedBookDetails) {
+      console.log(borrowedBookDetails);
+      SetMemberborrowedBook(borrowedBookDetails);
+    }
+  }, [dispatch]);
 
-  // Get Book Borrowed Member Name
+  // Get Book Borrowed Member Full Name
   var MemberFullName =
     member.firstName + " " + member.middleName + " " + member.lastName;
 
@@ -102,36 +129,66 @@ const Member = ({ id, handleBackClick }) => {
                 />
                 <H1>{MemberFullName}</H1>
                 <H4>{member.userType} Member</H4>
-                <br />
                 <H2>{`Member ID : ${member.id}`}</H2>
+
+                <FlexRow padding="1em">
+                  <Button
+                    onClick={() => {
+                      setShowEditComfirmation(true);
+                    }}
+                  >
+                    Edit
+                  </Button>
+                  {MemberborrowedBook === null ? (
+                    <Button
+                      color="danger"
+                      onClick={() => {
+                        setShowDeleteComfirmation(true);
+                      }}
+                    >
+                      Delete
+                    </Button>
+                  ) : (
+                    ""
+                  )}
+                </FlexRow>
               </ContainerInline>
 
               <ContainerInlineTextAlignLeft>
                 <H1>
                   <u>Member Details</u>
                 </H1>
-                <H4>NIC No. : {member.nic}</H4>
-                <H4>Contact No. : {member.contactNo}</H4>
-                <H4>Address : {member.address}</H4>
-              </ContainerInlineTextAlignLeft>
-            </FlexRow>
+                <H5>
+                  NIC No. : <b>{member.nic}</b>
+                </H5>
+                <H5>
+                  Contact No. : <b>{member.contactNo}</b>
+                </H5>
+                <H5>
+                  Address : <b>{member.address}</b>
+                </H5>
+                {MemberborrowedBook === null ? (
+                  ""
+                ) : (
+                  <>
+                    <br />
+                    <br />
 
-            <FlexRow>
-              <Button
-                onClick={() => {
-                  setShowEditComfirmation(true);
-                }}
-              >
-                Edit
-              </Button>
-              <Button
-                color="danger"
-                onClick={() => {
-                  setShowDeleteComfirmation(true);
-                }}
-              >
-                Delete
-              </Button>
+                    <H2>
+                      <u>Borrowed Book Details</u>
+                    </H2>
+                    <H5>
+                      <b>{MemberborrowedBook.title}</b>
+                    </H5>
+                    <H5>
+                      by <b>{MemberborrowedBook.author}</b>
+                    </H5>
+                    <H5>
+                      Borrowed Date: <b> {MemberborrowedBook.burrowedDate}</b>
+                    </H5>
+                  </>
+                )}
+              </ContainerInlineTextAlignLeft>
             </FlexRow>
           </>
         ) : (
