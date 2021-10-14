@@ -10,13 +10,17 @@ import {
 
 import Member from "./Member";
 import AddEditMemberDialog from "./AddEditMemberDialog";
-import { addMemberAPI } from "../../../api/memberAPI";
+import { getMembers } from "../../../api/memberAPI";
 import { addMember as addMemberStore } from "../../../Store/membersSlice";
 import { useDispatch } from "react-redux";
 
 const Members = ({ catalog }) => {
   const [selectedBookId, setSelectedBookId] = useState(null);
-  const [showAddBookDialog, setShowAddBookDialog] = useState(false);
+  const [showAddMemberDialog, setShowAddMemberDialog] = useState(false);
+  const [makeNewMemberId, setMakeNewMemberId] = useState(
+    getMembers().length + 1
+  );
+  // const [addNewMemberData, setAddNewMemberData] = useState("");
 
   const dispatch = useDispatch();
 
@@ -40,21 +44,13 @@ const Members = ({ catalog }) => {
 
   const handleAddMember = (confirmed, data) => {
     if (confirmed) {
-      // addBook(data)
-      //   .then((response) => {
-      //     if (!response.error) {
-      //       console.log(response.data);
-      addMemberAPI(data);
-      dispatch(addMemberStore(data));
-      //     }
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //   })
-      //   .finally(() => {});
-      // // console.log(data);
+      // Set New Member ID
+      setMakeNewMemberId(makeNewMemberId + 1);
+      var NewId = String(makeNewMemberId);
+      const newData = { ...data, id: NewId };
+
+      dispatch(addMemberStore(newData));
     }
-    setShowAddBookDialog(false);
   };
 
   return selectedBookId === null ? (
@@ -68,7 +64,7 @@ const Members = ({ catalog }) => {
           <Button
             rounded
             onClick={() => {
-              setShowAddBookDialog(true);
+              setShowAddMemberDialog(true);
             }}
           >
             <IoAddSharp />
@@ -82,7 +78,7 @@ const Members = ({ catalog }) => {
         />
       </FluidContainer>
       <AddEditMemberDialog
-        show={showAddBookDialog}
+        show={showAddMemberDialog}
         handleClose={handleAddMember}
       />
     </>
