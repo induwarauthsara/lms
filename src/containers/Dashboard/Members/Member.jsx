@@ -101,8 +101,10 @@ const Member = ({ id, handleBackClick }) => {
     if (borrowedBookDetails) {
       console.log(borrowedBookDetails);
       SetMemberborrowedBook(borrowedBookDetails);
+    } else {
+      SetMemberborrowedBook(null);
     }
-  }, [dispatch]);
+  }, [books]);
 
   // Get Book Borrowed Member Full Name
   var MemberFullName =
@@ -131,7 +133,7 @@ const Member = ({ id, handleBackClick }) => {
                 <H4>{member.userType} Member</H4>
                 <H2>{`Member ID : ${member.id}`}</H2>
 
-                <FlexRow padding="1em">
+                <FlexRow padding="1em" margin="auto">
                   <Button
                     onClick={() => {
                       setShowEditComfirmation(true);
