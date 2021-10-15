@@ -9,7 +9,7 @@ export const Header = styled.header `
 
 export const Main = styled.main `
   margin: 10px 20px;
-  height: 95vh;
+  height: 90vh;
   overflow: hidden;
   padding: 20px;
   display: flex;
