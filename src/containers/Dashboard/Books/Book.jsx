@@ -184,6 +184,7 @@ const Book = ({ id, handleBackClick }) => {
                   ""
                 ) : (
                   <>
+                    <br />
                     <h4>
                       Borrowed by :{" "}
                       {bookBorrowedMember(

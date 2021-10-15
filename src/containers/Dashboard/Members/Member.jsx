@@ -27,6 +27,15 @@ const ContainerInlineTextAlignLeft = styled(ContainerInline)`
   flex: 2;
 `;
 
+const ContainerInlineBox = styled(ContainerInline)`
+  border: 5px solid ${(props) => props.theme.primary.dark};
+  border-radius: 1em;
+  margin-right: 30px;
+  :hover {
+    background: ${(props) => props.theme.primary.light};
+  }
+`;
+
 const H1 = styled.h1`
   text-align: center;
   line-height: 2.3rem;
@@ -119,7 +128,7 @@ const Member = ({ id, handleBackClick }) => {
         {!isLoading && member !== null ? (
           <>
             <FlexRow width="100%">
-              <ContainerInline>
+              <ContainerInlineBox>
                 <img
                   src={memberCover}
                   alt="Member Cover"
@@ -154,7 +163,7 @@ const Member = ({ id, handleBackClick }) => {
                     ""
                   )}
                 </FlexRow>
-              </ContainerInline>
+              </ContainerInlineBox>
 
               <ContainerInlineTextAlignLeft>
                 <H1>
