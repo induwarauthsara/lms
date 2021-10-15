@@ -71,6 +71,10 @@ export default function AddEditBookDialog({
       window.alert(
         `Please enter a First Name to ${isEdit ? "edit" : "add"} Member`
       );
+    } else if (userType == "") {
+      window.alert(
+        `Please Select a User Type to ${isEdit ? "edit" : "add"} Member`
+      );
     } else {
       window.alert(
         `Please fill all fields to ${isEdit ? "edit" : "add"} Member.`
@@ -156,6 +160,7 @@ export default function AddEditBookDialog({
             id="userType"
             name="userType"
           >
+            <option value="">Please Select a User Type</option>
             <option value="School">School</option>
             <option value="University">University</option>
             <option value="Employed">Employe</option>
