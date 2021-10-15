@@ -36,7 +36,7 @@ export const FlexRow = styled.div`
   //justify-content: space-between;
   align-items: flex-start;
   padding: ${(props) => (props.padding ? props.padding : "1em 5em")};
-  margin: auto;
+  margin: ${(props) => (props.margin ? props.margin : "")};
 `;
 
 export const Button = styled.button`
