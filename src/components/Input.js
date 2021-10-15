@@ -23,6 +23,7 @@ const StyledSelectInput = styled.select`
   margin-bottom: 0.2em;
   width: 100%;
   box-sizing: border-box;
+  background: white;
 `;
 
 const InputFieldContainer = styled(Container)`
@@ -32,8 +33,8 @@ const InputFieldContainer = styled(Container)`
 export default function Input({ label, value, onChange, ...rest }) {
   return (
     <InputFieldContainer alingnItems="flex-start">
-      <Label> {label} </Label>
-      <StyledInput value={value} onChange={onChange} {...rest} />
+      <Label> {label} </Label>{" "}
+      <StyledInput value={value} onChange={onChange} {...rest} />{" "}
     </InputFieldContainer>
   );
 }
@@ -41,8 +42,8 @@ export default function Input({ label, value, onChange, ...rest }) {
 export function Select({ label, value, onChange, ...rest }) {
   return (
     <InputFieldContainer alingnItems="flex-start">
-      <Label> {label} </Label>
-      <StyledSelectInput value={value} onChange={onChange} {...rest} />
+      <Label> {label} </Label>{" "}
+      <StyledSelectInput value={value} onChange={onChange} {...rest} />{" "}
     </InputFieldContainer>
   );
 }
